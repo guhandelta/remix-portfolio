@@ -6,9 +6,9 @@ import { createThemeSessionResolver } from "remix-themes";
 
 const sessionStorage = createCookieSessionStorage({
     cookie: {
-        name: '__remis-themes',
+        name: '__remix-themes',
         // qwerty is just a placeholder, the Domain URL will be updated later || null can't be assigned to a typeOf string, "" is assigned
-        domain: process.env.NODE_ENV !== 'development'? "qwerty" : "",
+        domain: process.env.NODE_ENV !== "development" ? "qwerty" : "http://localhost:3000/",
         // / => instrcuts the cookie to apply for all routes, eg: /admin would makes ure cookie works only in /admin route
         path: '/',
         // httpOnly: true, => security purposes

@@ -11,6 +11,7 @@ import { ThemeProvider, useTheme, PreventFlashOnWrongTheme } from "remix-themes"
 import stylesheet from "~/tailwind.css";
 import type { LinksFunction, LoaderArgs } from "@remix-run/node";
 import { themeSessionResolver } from "./utils/session.server";
+import Navbar from "./components/Navbar";
 
 /*Remix has 2 types of funcitons - Loaders & Actions
 Loaders are to get data(GET) || Actions are to manipulate data(POST, PUT, PATCH, DELETE)
@@ -42,6 +43,19 @@ export default function AppWithProvider(){
   )
 }
 
+
+function Layout({ children }: {children: React.ReactNode}){
+
+  return(
+    <div>
+      <Navbar />
+      <main className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        {children}
+      </main>
+    </div>
+  )
+}
+
 function App() {
   const { theme } = useLoaderData<typeof loader>();
   const [ themeX ] = useTheme();
@@ -54,12 +68,14 @@ function App() {
         <PreventFlashOnWrongTheme ssrTheme={Boolean(theme)} />
         <Links />
       </head>
-      <body>
-        <h1>Remix Personal Website</h1>
-        <Outlet />
-        <ScrollRestoration />
-        <Scripts />
-        <LiveReload />
+      <body className="bg-white text-black dark:bg-gray-900 dark:text-white h-full selection:bg-gray-50 dark:selection:bg-gray-800">
+        <Layout>
+          <h1>Remix Personal Website</h1>
+          <Outlet />
+          <ScrollRestoration />
+          <Scripts />
+          <LiveReload />
+        </Layout>
       </body>
     </html>
   );
