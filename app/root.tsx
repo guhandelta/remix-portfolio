@@ -70,7 +70,6 @@ function App() {
       </head>
       <body className="bg-white text-black dark:bg-gray-900 dark:text-white h-full selection:bg-gray-50 dark:selection:bg-gray-800">
         <Layout>
-          <h1>Remix Personal Website</h1>
           <Outlet />
           <ScrollRestoration />
           <Scripts />

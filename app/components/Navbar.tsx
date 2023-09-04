@@ -2,29 +2,9 @@ import React from 'react'
 import { Disclosure } from "@headlessui/react"
 import { Link, NavLink } from "@remix-run/react"
 import { Theme, useTheme } from 'remix-themes'
+import { NavbarLinks } from './_const'
 
-const NavbarLinks = [
-    {
-        sno: 1,
-        name: 'Home',
-        link: '/'
-    },
-    {
-        sno: 2,
-        name: 'Blog',
-        link: '/blog'
-    },
-    {
-        sno: 3,
-        name: 'Experience',
-        link: '/experience'
-    },
-    {
-        sno: 4,
-        name: 'Projects',
-        link: '/projects'
-    },
-];
+
 
 const ThemeToggler = ({ theme, setTheme, prev }) => (
     <button 
@@ -77,7 +57,7 @@ const Navbar = () => {
         {/* Get the state when the NavBar is open */}
         {({open}) => (
             <>
-                <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div className="sticky top-0 z-30 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="flex justify-between h-16">
                         <div className="flex justify-between w-full">
                             <div className="flex items-center">
@@ -133,7 +113,7 @@ const Navbar = () => {
                 </div>
                 {/* Disclosure.Panel is the panel that will be shown/hidden */}
                 <Disclosure.Panel className="sm:hidden">
-                    <div className="pt-2 pb-3 space-y-1">                     
+                    <div className="sticky top-0 z-30 pt-2 pb-3 space-y-1">                     
                         {NavbarLinks.map(({ sno, name, link }) => (
                             <NavLink
                                 className={({ isActive }) => isActive ? 'bg-teal-50 dark:bg-gray-800 text-teal-700 dark:text-white block pl-3 pr-4 py-2 border-l-4 border-teal-500 dark:border-teal-500 text-base font-medium' : 'text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-800 hover:text-gray-900 dark:hover:text-white block pl-3 pr-4 py-2 border-l-4 border-transparent text-base font-medium'}
