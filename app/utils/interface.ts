@@ -1,5 +1,5 @@
 export interface Post {
-    post: {
+    posts: {
         createdAt: string;
         id: string;
         overview: string;

@@ -10,40 +10,44 @@ import theme from 'prismjs/themes/prism-tomorrow.css'
 import linenum from 'prismjs/plugins/line-numbers/prism-line-numbers.css'
 import { useEffect } from "react";
 
-interface iAppProps{
-    post: PostId;
-};
-
 export const links: LinksFunction = () => [
     { rel: "stylesheet", href: theme },
     { rel: "stylesheet", href: linenum },
 ];
 
-// export async function loader({ params }: LoaderArgs) {
-//     const query = gql`
-//         query Posts {
-//             post(where: {slug: "${params.slug}"}) {
-//                 id
-//                 overview
-//                 publishedAt
-//                 createdAt
-//                 slug
-//                 title
-//                 body{
-//                     raw
-//                 }
-//             }
-//         }
+interface iAppProps{
+    post: PostId;
+};
+
+export async function loader({ params }: LoaderArgs) {
+    const query = gql`
+        query Posts {
+            post(where: {slug: "${params.slug}"}) {
+                id
+                overview
+                publishedAt
+                createdAt
+                slug
+                title
+                body{
+                    raw
+                }
+            }
+        }
       
-//     `;
+    `;
 
-//     const post = await hygraph.request(query);
+    const post = await hygraph.request(query);
+    console.log("Post:\t",post);
+    
 
-//     return json({ post });
-// }
+    return json({ post });
+}
 
 const PostSlug = () => {
-    // const { post } = useLoaderData() as iAppProps;
+    const { post } = useLoaderData() as iAppProps;
+    console.log("Post body:\t",post.post.body.raw);
+    
 
     useEffect(() => {
         Prism.highlightAll();
@@ -71,16 +75,17 @@ const PostSlug = () => {
             <div className="divide-y divide-gray-200 pb-8 dark:divide-gray-700 xl:divide-y-8">
                 <div className="divide-y divide-gray-200 dark:divide-gray-700 xl:col-span-3 xl:row-span-2 xl:pb-0 ">
                     <div className="prose max-w-none pt-10 pb-8 dark:prose-invert">
-                        {/*<RichText 
+                        <RichText 
                             content={post.post.body.raw}
                             renderers={{
-                                code_block: (({ children }) => {
-                                    return (
-                                        <pre className="line-numbers language-javascript">
-                                            <code>{children}</code>
-                                        </pre>
-                                    );
-                                },
+                                // code_block: (({ children }) => {
+                                //     return (
+                                //         <pre className="line-numbers language-javascript">
+                                //             <code>{children}</code>
+                                //         </pre>
+                                //     );
+                                // },
+                                
                                 img: ({ src, altText, height, width }) => (
                                     <img
                                         src={src}
@@ -100,11 +105,14 @@ const PostSlug = () => {
                                         {children}
                                     </a>
                                 ),
+                                
                             }}
-                        />*/}
+                        />
                     </div>
                 </div>
             </div>
         </div>
     )
 }
+
+export default PostSlug;
