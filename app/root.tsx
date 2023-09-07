@@ -6,6 +6,7 @@ import {
   Scripts,
   ScrollRestoration,
   useLoaderData,
+  useRouteError,
 } from "@remix-run/react";
 import { ThemeProvider, useTheme, PreventFlashOnWrongTheme } from "remix-themes";
 import stylesheet from "~/tailwind.css";
@@ -41,6 +42,26 @@ export default function AppWithProvider(){
       <App />
     </ThemeProvider>
   )
+}
+
+export function CatchBoundary() {
+  const error = useRouteError()
+
+  return (
+    <html>
+      <head>
+        <title>Oops!</title>
+        <Meta />
+        <Links />
+      </head>
+      <body>
+        <h1>
+          404 Page not found
+        </h1>
+        <Scripts />
+      </body>
+    </html>
+  );
 }
 
 
