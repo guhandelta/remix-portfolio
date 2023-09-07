@@ -63,9 +63,9 @@ const Navbar = () => {
                             <div className="flex items-center">
                                 <Link to="/">
                                     <h1 className="text-2xl font-medium">
-                                        Guhan
+                                        Guhaprasaanth&nbsp;
                                         <span className="text-teal-500">
-                                            Blog
+                                            Nandagopal
                                         </span>
                                     </h1>
                                 </Link>
