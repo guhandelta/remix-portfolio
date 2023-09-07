@@ -26,7 +26,6 @@ export async function loader({} : LoaderArgs) {
     `;
 
     const projects = await hygraph.request(query);
-    console.log("Projects:\t",projects);
 
     return json({projects});
 

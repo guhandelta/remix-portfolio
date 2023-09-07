@@ -37,16 +37,13 @@ export async function loader({ params }: LoaderArgs) {
       
     `;
 
-    const post = await hygraph.request(query);
-    console.log("Post:\t",post);
-    
+    const post = await hygraph.request(query);   
 
     return json({ post });
 }
 
 const PostSlug = () => {
     const { post } = useLoaderData() as iAppProps;
-    console.log("Post body:\t",post.post.body.raw);
     
 
     useEffect(() => {
