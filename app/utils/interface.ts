@@ -7,3 +7,14 @@ export interface Post {
         slug: string;
     }[]
 }
+
+export interface PostId {
+    post: {
+        id: string;
+        overview: string;
+        title: string;
+        slug: string;
+        publishedAt: string;
+        body: any;
+    }[]
+}

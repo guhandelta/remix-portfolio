@@ -3,33 +3,34 @@ import { Link, useLoaderData } from "@remix-run/react";
 import { gql } from "graphql-request"
 import { hygraph } from "~/utils/Hygraph.server"
 import { Post } from "~/utils/interface";
+import { blogposts } from "./blogContent";
 
 interface iAppProps{
     posts: Post;
 }
 
-export async function loader({ request }: LoaderArgs) {
+// export async function loader({ request }: LoaderArgs) {
 
-    const query = gql`
-    query Posts {
-        post{
-            id
-            title
-            overview
-            slug
-            createdAt
-            updatedAt
-        }
-    }     
-    `
-    const posts = await hygraph.request(query);
+//     const query = gql`
+//     query Posts {
+//         post{
+//             id
+//             title
+//             overview
+//             slug
+//             createdAt
+//             updatedAt
+//         }
+//     }     
+//     `
+//     const posts = await hygraph.request(query);
 
-    return json({ posts });
-}
+//     return json({ posts });
+// }
 
 const Blog = () => {
 
-    const { posts } = useLoaderData() as iAppProps;
+    // const { posts } = useLoaderData() as iAppProps;
     
   return (
     <>
@@ -42,7 +43,7 @@ const Blog = () => {
             </div>
         </div>
         <ul>
-            {posts.post.map(({ createdAt, slug, title, overview}) => (
+            {blogposts.map(({ createdAt, slug, title, overview}) => (
                 <li key={5} className="py-4">
                     <article className="space-y-2 xl:grid xl:grid-cols-4 xl:items-baseline xl:space-y-0">
                         <div>
@@ -51,20 +52,22 @@ const Blog = () => {
                             </p>
                         </div>
 
-                        <Link
+                        {/* <Link
                             to={`/post/${slug}`}
                             className="space-y-5 xl:col-span-3"
                             prefetch="intent" //Intent prefetching => Prefetches the data only when the user hovers over the post/link
-                        >
-                            <div className="space-y-2">
-                                <h3 className="text-2xl font-bold leading-8 tracking-tight text-gray-900 dark:text-gray-100">
-                                    {title}
-                                </h3>
+                        > */}
+                            <div className="space-y-5 xl:col-span-3">
+                                <div className="space-y-2">
+                                    <h3 className="text-2xl font-bold leading-8 tracking-tight text-gray-900 dark:text-gray-100">
+                                        {title}
+                                    </h3>
+                                </div>
+                                <div className="prose max-w-none text-gray-500 dark:text-gray-400">
+                                    {overview}
+                                </div>
                             </div>
-                            <div className="prose max-w-none text-gray-500 dark:text-gray-400">
-                                {overview}
-                            </div>
-                        </Link>
+                        {/* </Link> */}
                     </article>
                 </li>
             ))}
