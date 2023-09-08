@@ -24,10 +24,7 @@ export async function loader({ request }: LoaderArgs) {
     }     
     `
     const posts = await hygraph.request(query);
-
-    // console.log("Posts:\t",posts);
     
-
     return json({ posts });
 }
 

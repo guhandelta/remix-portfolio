@@ -25,9 +25,7 @@ export async function loader({} : LoaderArgs) {
       
     `;
 
-    const projects = await hygraph.request(query);
-    console.log("Projects:\t",projects);
-    
+    const projects = await hygraph.request(query);    
 
     return json({projects});
 
@@ -35,9 +33,7 @@ export async function loader({} : LoaderArgs) {
 
 const Projects = () => {
 
-    const { projects } = useLoaderData() as iAppProps;
-    console.log("Projects:\t",projects);
-    
+    const { projects } = useLoaderData() as iAppProps;    
 
   return (
     <div className=" divide-y divide-gray-200 dark:divide-gray-700">
