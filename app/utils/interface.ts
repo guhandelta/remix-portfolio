@@ -31,3 +31,27 @@ export interface Project {
         publishedAt: string;
     }[]
 }
+export interface Experience {
+    experiences: {
+        id: string;
+        title: string;
+        link: string;
+        overview: string;
+        titleImage: {
+            url: string
+        };
+        publishedAt: string;
+    }[]
+}
+
+export interface Apps {
+    projects: {
+        title: string;
+        summary: string;
+        image: {
+            id: string
+        };
+        link: string;
+        github: string;
+    }[]
+}
