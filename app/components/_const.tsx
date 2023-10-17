@@ -49,7 +49,7 @@ export const SocialMediaIcons = [
     {
         sno: 3,
         name: 'LinkedIn',
-        link: "https://linkein.com/in/guhaprasaanthnandagopal",
+        link: "https://linkedin.com/in/guhaprasaanthnandagopal/",
         icon:   <svg
                   viewBox="0 0 1024 1024"
                   fill="currentColor"
